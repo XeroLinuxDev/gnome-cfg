@@ -14,8 +14,8 @@ sidebar: qml,top
 strings:
     productName:         XeroG
     shortProductName:    XeroG
-    version:             2023.08
-    shortVersion:        2023.08.12
+    version:             2025.02
+    shortVersion:        2023.02.14
     versionedName:       XeroG
     shortVersionedName:  XeroG
     bootloaderEntryName: XeroG
@@ -41,4 +41,4 @@ slideshowAPI: 1
 style:
    SidebarBackground:    "#31313a"
    SidebarText:          "#FFFFFF"
-   SidebarBackgroundCurrent: "#9fc5e8"
+   SidebarBackgroundCurrent: "#895c7e"
