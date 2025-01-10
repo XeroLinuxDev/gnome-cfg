@@ -11,12 +11,11 @@
 import io.calamares.core 1.0
 import io.calamares.ui 1.0
 
-import QtQuick 2.15
-import QtQuick.Controls 2.10
-import QtQuick.Layouts 1.3
-import org.kde.kirigami 2.7 as Kirigami
-import QtGraphicalEffects 1.0
-import QtQuick.Window 2.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
+import QtQuick.Window
 
 Kirigami.ScrollablePage {
     // You can hard-code a color here, or bind to a Kirigami theme color,
@@ -27,7 +26,7 @@ Kirigami.ScrollablePage {
     readonly property color unfilledFieldOutlineColor: "#F1F1F1"
     readonly property color positiveFieldOutlineColor: "#DCFFDC"
     readonly property color negativeFieldOutlineColor: "#BE5F68"
-    readonly property color headerTextColor: "#1F1F1F"
+    readonly property color headerTextColor: "#FFFFFF"
     readonly property color commentsColor: "#FFFFFF"
 
     width: parent.width
@@ -53,6 +52,7 @@ Kirigami.ScrollablePage {
 
             Label {
                 width: parent.width
+                color: headerTextColor
                 text: qsTr("What is your name?")
             }
 
@@ -65,9 +65,9 @@ Kirigami.ScrollablePage {
                 onTextChanged: config.setFullName(text)
 
                 palette.base: _userNameField.text.length
-                    ? positiveFieldColor : unfilledFieldColor
+                ? positiveFieldColor : unfilledFieldColor
                 palette.highlight : _userNameField.text.length
-                    ? positiveFieldOutlineColor : unfilledFieldOutlineColor
+                ? positiveFieldOutlineColor : unfilledFieldOutlineColor
             }
         }
 
@@ -77,6 +77,7 @@ Kirigami.ScrollablePage {
 
             Label {
                 width: parent.width
+                color: headerTextColor
                 text: qsTr("What name do you want to use to log in?")
             }
 
@@ -89,26 +90,26 @@ Kirigami.ScrollablePage {
                 validator: RegularExpressionValidator { regularExpression: /[a-z_][a-z0-9_-]*[$]?$/ }
 
                 onTextChanged: acceptableInput
-                    ? ( _userLoginField.text === "root"
-                    ? forbiddenMessage.visible=true
-                    : ( config.setLoginName(text),
+                ? ( _userLoginField.text === "root"
+                ? forbiddenMessage.visible=true
+                : ( config.setLoginName(text),
                     userMessage.visible = false,forbiddenMessage.visible=false ) )
-                    : ( userMessage.visible = true,console.log("Invalid") )
+                : ( userMessage.visible = true,console.log("Invalid") )
 
                 palette.base: _userLoginField.text.length
-                    ? ( acceptableInput
-                    ? ( _userLoginField.text === "root"
-                    ? negativeFieldColor
-                    : positiveFieldColor )
-                    : negativeFieldColor )
-                    : unfilledFieldColor
+                ? ( acceptableInput
+                ? ( _userLoginField.text === "root"
+                ? negativeFieldColor
+                : positiveFieldColor )
+                : negativeFieldColor )
+                : unfilledFieldColor
                 palette.highlight : _userLoginField.text.length
-                    ? ( acceptableInput
-                    ? ( _userLoginField.text === "root"
-                    ? negativeFieldOutlineColor
-                    : positiveFieldOutlineColor )
-                    : negativeFieldOutlineColor )
-                    : unfilledFieldOutlineColor
+                ? ( acceptableInput
+                ? ( _userLoginField.text === "root"
+                ? negativeFieldOutlineColor
+                : positiveFieldOutlineColor )
+                : negativeFieldOutlineColor )
+                : unfilledFieldOutlineColor
             }
 
             Label {
@@ -116,7 +117,7 @@ Kirigami.ScrollablePage {
                 text: qsTr("If more than one person will use this computer, you can create multiple accounts after installation.")
                 font.weight: Font.Thin
                 font.pointSize: 8
-                color: commentsColor
+                color: headerTextColor
             }
         }
 
@@ -144,6 +145,7 @@ Kirigami.ScrollablePage {
 
             Label {
                 width: parent.width
+                color: headerTextColor
                 text: qsTr("What is the name of this computer?")
             }
 
@@ -155,24 +157,24 @@ Kirigami.ScrollablePage {
                 validator: RegularExpressionValidator { regularExpression: /[a-zA-Z0-9][-a-zA-Z0-9_]+/ }
 
                 onTextChanged: acceptableInput
-                    ? ( _hostName.text === "localhost"
-                    ? forbiddenHost.visible=true
-                    : ( config.setHostName(text),
+                ? ( _hostName.text === "localhost"
+                ? forbiddenHost.visible=true
+                : ( config.setHostName(text),
                     hostMessage.visible = false,forbiddenHost.visible = false ) )
-                    : hostMessage.visible = true
+                : hostMessage.visible = true
 
                 palette.base: _hostName.text.length
-                    ? ( acceptableInput
-                    ? ( _hostName.text === "localhost"
-                    ? negativeFieldColor : positiveFieldColor )
-                    : negativeFieldColor)
-                    : unfilledFieldColor
+                ? ( acceptableInput
+                ? ( _hostName.text === "localhost"
+                ? negativeFieldColor : positiveFieldColor )
+                : negativeFieldColor)
+                : unfilledFieldColor
                 palette.highlight : _hostName.text.length
-                    ? ( acceptableInput
-                    ? ( _hostName.text === "localhost"
-                    ? negativeFieldOutlineColor : positiveFieldOutlineColor )
-                    : negativeFieldOutlineColor)
-                    : unfilledFieldOutlineColor
+                ? ( acceptableInput
+                ? ( _hostName.text === "localhost"
+                ? negativeFieldOutlineColor : positiveFieldOutlineColor )
+                : negativeFieldOutlineColor)
+                : unfilledFieldOutlineColor
             }
 
             Label {
@@ -180,7 +182,7 @@ Kirigami.ScrollablePage {
                 text: qsTr("This name will be used if you make the computer visible to others on a network.")
                 font.weight: Font.Thin
                 font.pointSize: 8
-                color: commentsColor
+                color: headerTextColor
             }
         }
 
@@ -208,6 +210,7 @@ Kirigami.ScrollablePage {
 
             Label {
                 width: parent.width
+                color: headerTextColor
                 text: qsTr("Choose a password to keep your account safe.")
             }
 
@@ -223,9 +226,9 @@ Kirigami.ScrollablePage {
                     onTextChanged: config.setUserPassword(text)
 
                     palette.base: _passwordField.text.length
-                        ? positiveFieldColor : unfilledFieldColor
+                    ? positiveFieldColor : unfilledFieldColor
                     palette.highlight : _passwordField.text.length
-                        ? positiveFieldOutlineColor : unfilledFieldOutlineColor
+                    ? positiveFieldOutlineColor : unfilledFieldOutlineColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -239,20 +242,20 @@ Kirigami.ScrollablePage {
                     text: config.userPasswordSecondary
 
                     onTextChanged: _passwordField.text === _verificationPasswordField.text
-                        ? ( config.setUserPasswordSecondary(text),
+                    ? ( config.setUserPasswordSecondary(text),
                         passMessage.visible = false,
                         validityMessage.visible = true )
-                        : ( passMessage.visible = true,
+                    : ( passMessage.visible = true,
                         validityMessage.visible = false )
 
                     palette.base: _verificationPasswordField.text.length
-                        ? ( _passwordField.text === _verificationPasswordField.text
-                        ? positiveFieldColor : negativeFieldColor )
-                        : unfilledFieldColor
+                    ? ( _passwordField.text === _verificationPasswordField.text
+                    ? positiveFieldColor : negativeFieldColor )
+                    : unfilledFieldColor
                     palette.highlight : _verificationPasswordField.text.length
-                        ? ( _passwordField.text === _verificationPasswordField.text
-                        ? positiveFieldOutlineColor : negativeFieldOutlineColor )
-                        : unfilledFieldOutlineColor
+                    ? ( _passwordField.text === _verificationPasswordField.text
+                    ? positiveFieldOutlineColor : negativeFieldOutlineColor )
+                    : unfilledFieldOutlineColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -266,7 +269,7 @@ Kirigami.ScrollablePage {
                 font.weight: Font.Thin
                 font.pointSize: 8
                 wrapMode: Text.WordWrap
-                color: commentsColor
+                color: headerTextColor
             }
         }
 
@@ -285,9 +288,9 @@ Kirigami.ScrollablePage {
             showCloseButton: true
             visible: false
             type:  config.userPasswordValidity
-                ? ( config.requireStrongPasswords
-                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
-                : Kirigami.MessageType.Positive
+            ? ( config.requireStrongPasswords
+            ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+            : Kirigami.MessageType.Positive
             text: config.userPasswordMessage
         }
 
@@ -295,8 +298,10 @@ Kirigami.ScrollablePage {
             id: root
             visible: config.writeRootPassword
             text: qsTr("Reuse user password as root password")
+            palette.windowText: "red"
             checked: config.reuseUserPasswordForRoot
             onCheckedChanged: config.setReuseUserPasswordForRoot(checked)
+
         }
 
         Label {
@@ -305,7 +310,7 @@ Kirigami.ScrollablePage {
             text: qsTr("Use the same password for the administrator account.")
             font.weight: Font.Thin
             font.pointSize: 8
-            color: commentsColor
+            color: headerTextColor
         }
 
         Column {
@@ -331,9 +336,9 @@ Kirigami.ScrollablePage {
                     onTextChanged: config.setRootPassword(text)
 
                     palette.base: _rootPasswordField.text.length
-                        ? positiveFieldColor : unfilledFieldColor
+                    ? positiveFieldColor : unfilledFieldColor
                     palette.highlight : _rootPasswordField.text.length
-                        ? positiveFieldOutlineColor : unfilledFieldOutlineColor
+                    ? positiveFieldOutlineColor : unfilledFieldOutlineColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -347,18 +352,18 @@ Kirigami.ScrollablePage {
                     text: config.rootPasswordSecondary
 
                     onTextChanged: _rootPasswordField.text === _verificationRootPasswordField.text
-                        ? ( config.setRootPasswordSecondary(text),
+                    ? ( config.setRootPasswordSecondary(text),
                         rootPassMessage.visible = false,rootValidityMessage.visible = true )
-                        : ( rootPassMessage.visible = true,rootValidityMessage.visible = false )
+                    : ( rootPassMessage.visible = true,rootValidityMessage.visible = false )
 
                     palette.base: _verificationRootPasswordField.text.length
-                        ? ( _rootPasswordField.text === _verificationRootPasswordField.text
-                        ? positiveFieldColor : negativeFieldColor)
-                        : unfilledFieldColor
+                    ? ( _rootPasswordField.text === _verificationRootPasswordField.text
+                    ? positiveFieldColor : negativeFieldColor)
+                    : unfilledFieldColor
                     palette.highlight : _verificationRootPasswordField.text.length
-                        ? ( _rootPasswordField.text === _verificationRootPasswordField.text
-                        ? positiveFieldOutlineColor : negativeFieldOutlineColor)
-                        : unfilledFieldOutlineColor
+                    ? ( _rootPasswordField.text === _verificationRootPasswordField.text
+                    ? positiveFieldOutlineColor : negativeFieldOutlineColor)
+                    : unfilledFieldOutlineColor
 
                     echoMode: TextInput.Password
                     passwordMaskDelay: 300
@@ -372,7 +377,7 @@ Kirigami.ScrollablePage {
                 text: qsTr("Enter the same password twice, so that it can be checked for typing errors.")
                 font.weight: Font.Thin
                 font.pointSize: 8
-                color: commentsColor
+                color: headerTextColor
             }
         }
 
@@ -391,36 +396,37 @@ Kirigami.ScrollablePage {
             showCloseButton: true
             visible: false
             type:  config.rootPasswordValidity
-                ? ( config.requireStrongPasswords
-                ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
-                : Kirigami.MessageType.Positive
+            ? ( config.requireStrongPasswords
+            ? Kirigami.MessageType.Error : Kirigami.MessageType.Warning )
+            : Kirigami.MessageType.Positive
             text: config.rootPasswordMessage
         }
 
         CheckBox {
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignLeft
             text: qsTr("Log in automatically without asking for the password")
+            palette.windowText: "red"
             checked: config.doAutoLogin
             onCheckedChanged: config.setAutoLogin(checked)
         }
 
         CheckBox {
             visible: config.permitWeakPasswords
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignLeft
             text: qsTr("Validate passwords quality")
             checked: config.requireStrongPasswords
             onCheckedChanged: config.setRequireStrongPasswords(checked),
-                rootPassMessage.visible = false
+            rootPassMessage.visible = false
         }
 
         Label {
             visible: config.permitWeakPasswords
             width: parent.width
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignLeft
             text: qsTr("When this box is checked, password-strength checking is done and you will not be able to use a weak password.")
             font.weight: Font.Thin
             font.pointSize: 8
-            color: commentsColor
+            color: headerTextColor
         }
     }
 }
