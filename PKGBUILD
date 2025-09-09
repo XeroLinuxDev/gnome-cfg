@@ -1,8 +1,8 @@
 # Maintainer: DarkXero <info@techxero.com>
-pkgname=calamares-g-cfg
+pkgname=gnome-cfg
 _destname1="/etc"
 pkgver=3.4.0
-pkgrel=19
+pkgrel=20
 pkgdesc="calamares Config for XeroLinux"
 arch=('any')
 url="https://github.com/XeroLinuxDev"
